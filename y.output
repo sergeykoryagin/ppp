@@ -1,0 +1,1001 @@
+Terminals which are not used
+
+   yANY
+
+
+Grammar
+
+    0 $accept: list $end
+
+    1 list: /* empty */
+    2     | list stat ySEMICOLON
+    3     | list stat error
+    4     | list error ySEMICOLON
+
+    5 stat: yLOCATE for_exp scope while_exp optimize_exp
+    6     | yIDENTIFIER yASSIGN exp
+    7     | yIDENTIFIER error exp
+
+    8 lexp: exp yLESS exp
+    9     | exp yGREAT exp
+   10     | exp yLEQ exp
+   11     | exp yGEQ exp
+   12     | exp yNEQ exp
+   13     | exp yEQUAL exp
+   14     | exp error exp
+   15     | lexp yAND lexp
+   16     | lexp yOR lexp
+   17     | yNOT lexp
+   18     | yOP lexp yCP
+
+   19 exp: term
+   20    | exp yPLUS exp
+   21    | exp yMINUS exp
+   22    | exp yMULTIPLY exp
+   23    | exp yDIVIDE exp
+   24    | yMINUS exp
+   25    | yOP exp yCP
+
+   26 term: yNUMBER
+   27     | yIDENTIFIER
+
+   28 scope: /* empty */
+   29      | yALL
+   30      | yNEXT exp
+   31      | yNEXT error
+   32      | yRECORD exp
+   33      | yRECORD error
+   34      | yREST
+
+   35 for_exp: yFOR lexp
+
+   36 while_exp: yWHILE lexp
+
+   37 optimize_exp: /* empty */
+   38             | yNOOPTIMIZE
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256) 3 4 7 14 31 33
+yLOCATE (258) 5
+yFOR (259) 35
+yWHILE (260) 36
+yNOOPTIMIZE (261) 38
+yNEXT (262) 30 31
+yRECORD (263) 32 33
+yREST (264) 34
+yALL (265) 29
+yPLUS (266) 20
+yMINUS (267) 21 24
+yMULTIPLY (268) 22
+yDIVIDE (269) 23
+yLEQ (270) 10
+yGEQ (271) 11
+yNEQ (272) 12
+yEQUAL (273) 13
+yLESS (274) 8
+yGREAT (275) 9
+yASSIGN (276) 6
+yIDENTIFIER (277) 6 7 27
+yNUMBER (278) 26
+yAND (279) 15
+yOR (280) 16
+yNOT (281) 17
+yOP (282) 18 25
+yCP (283) 18 25
+ySEMICOLON (284) 2 4
+yANY (285)
+UMINUS (286)
+
+
+Nonterminals, with rules where they appear
+
+$accept (32)
+    on left: 0
+list (33)
+    on left: 1 2 3 4, on right: 0 2 3 4
+stat (34)
+    on left: 5 6 7, on right: 2 3
+lexp (35)
+    on left: 8 9 10 11 12 13 14 15 16 17 18, on right: 15 16 17 18
+    35 36
+exp (36)
+    on left: 19 20 21 22 23 24 25, on right: 6 7 8 9 10 11 12 13 14
+    20 21 22 23 24 25 30 32
+term (37)
+    on left: 26 27, on right: 19
+scope (38)
+    on left: 28 29 30 31 32 33 34, on right: 5
+for_exp (39)
+    on left: 35, on right: 5
+while_exp (40)
+    on left: 36, on right: 5
+optimize_exp (41)
+    on left: 37 38, on right: 5
+
+
+state 0
+
+    0 $accept: . list $end
+
+    $default  reduce using rule 1 (list)
+
+    list  go to state 1
+
+
+state 1
+
+    0 $accept: list . $end
+    2 list: list . stat ySEMICOLON
+    3     | list . stat error
+    4     | list . error ySEMICOLON
+
+    $end         shift, and go to state 2
+    error        shift, and go to state 3
+    yLOCATE      shift, and go to state 4
+    yIDENTIFIER  shift, and go to state 5
+
+    stat  go to state 6
+
+
+state 2
+
+    0 $accept: list $end .
+
+    $default  accept
+
+
+state 3
+
+    4 list: list error . ySEMICOLON
+
+    ySEMICOLON  shift, and go to state 7
+
+
+state 4
+
+    5 stat: yLOCATE . for_exp scope while_exp optimize_exp
+
+    yFOR  shift, and go to state 8
+
+    for_exp  go to state 9
+
+
+state 5
+
+    6 stat: yIDENTIFIER . yASSIGN exp
+    7     | yIDENTIFIER . error exp
+
+    error    shift, and go to state 10
+    yASSIGN  shift, and go to state 11
+
+
+state 6
+
+    2 list: list stat . ySEMICOLON
+    3     | list stat . error
+
+    error       shift, and go to state 12
+    ySEMICOLON  shift, and go to state 13
+
+
+state 7
+
+    4 list: list error ySEMICOLON .
+
+    $default  reduce using rule 4 (list)
+
+
+state 8
+
+   35 for_exp: yFOR . lexp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yNOT         shift, and go to state 17
+    yOP          shift, and go to state 18
+
+    lexp  go to state 19
+    exp   go to state 20
+    term  go to state 21
+
+
+state 9
+
+    5 stat: yLOCATE for_exp . scope while_exp optimize_exp
+
+    yNEXT    shift, and go to state 22
+    yRECORD  shift, and go to state 23
+    yREST    shift, and go to state 24
+    yALL     shift, and go to state 25
+
+    $default  reduce using rule 28 (scope)
+
+    scope  go to state 26
+
+
+state 10
+
+    7 stat: yIDENTIFIER error . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 28
+    term  go to state 21
+
+
+state 11
+
+    6 stat: yIDENTIFIER yASSIGN . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 29
+    term  go to state 21
+
+
+state 12
+
+    3 list: list stat error .
+
+    $default  reduce using rule 3 (list)
+
+
+state 13
+
+    2 list: list stat ySEMICOLON .
+
+    $default  reduce using rule 2 (list)
+
+
+state 14
+
+   24 exp: yMINUS . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 30
+    term  go to state 21
+
+
+state 15
+
+   27 term: yIDENTIFIER .
+
+    $default  reduce using rule 27 (term)
+
+
+state 16
+
+   26 term: yNUMBER .
+
+    $default  reduce using rule 26 (term)
+
+
+state 17
+
+   17 lexp: yNOT . lexp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yNOT         shift, and go to state 17
+    yOP          shift, and go to state 18
+
+    lexp  go to state 31
+    exp   go to state 20
+    term  go to state 21
+
+
+state 18
+
+   18 lexp: yOP . lexp yCP
+   25 exp: yOP . exp yCP
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yNOT         shift, and go to state 17
+    yOP          shift, and go to state 18
+
+    lexp  go to state 32
+    exp   go to state 33
+    term  go to state 21
+
+
+state 19
+
+   15 lexp: lexp . yAND lexp
+   16     | lexp . yOR lexp
+   35 for_exp: yFOR lexp .
+
+    yAND  shift, and go to state 34
+    yOR   shift, and go to state 35
+
+    $default  reduce using rule 35 (for_exp)
+
+
+state 20
+
+    8 lexp: exp . yLESS exp
+    9     | exp . yGREAT exp
+   10     | exp . yLEQ exp
+   11     | exp . yGEQ exp
+   12     | exp . yNEQ exp
+   13     | exp . yEQUAL exp
+   14     | exp . error exp
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    error      shift, and go to state 36
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+    yLEQ       shift, and go to state 41
+    yGEQ       shift, and go to state 42
+    yNEQ       shift, and go to state 43
+    yEQUAL     shift, and go to state 44
+    yLESS      shift, and go to state 45
+    yGREAT     shift, and go to state 46
+
+
+state 21
+
+   19 exp: term .
+
+    $default  reduce using rule 19 (exp)
+
+
+state 22
+
+   30 scope: yNEXT . exp
+   31      | yNEXT . error
+
+    error        shift, and go to state 47
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 48
+    term  go to state 21
+
+
+state 23
+
+   32 scope: yRECORD . exp
+   33      | yRECORD . error
+
+    error        shift, and go to state 49
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 50
+    term  go to state 21
+
+
+state 24
+
+   34 scope: yREST .
+
+    $default  reduce using rule 34 (scope)
+
+
+state 25
+
+   29 scope: yALL .
+
+    $default  reduce using rule 29 (scope)
+
+
+state 26
+
+    5 stat: yLOCATE for_exp scope . while_exp optimize_exp
+
+    yWHILE  shift, and go to state 51
+
+    while_exp  go to state 52
+
+
+state 27
+
+   25 exp: yOP . exp yCP
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 53
+    term  go to state 21
+
+
+state 28
+
+    7 stat: yIDENTIFIER error exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 7 (stat)
+
+
+state 29
+
+    6 stat: yIDENTIFIER yASSIGN exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 6 (stat)
+
+
+state 30
+
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+   24    | yMINUS exp .
+
+    $default  reduce using rule 24 (exp)
+
+
+state 31
+
+   15 lexp: lexp . yAND lexp
+   16     | lexp . yOR lexp
+   17     | yNOT lexp .
+
+    $default  reduce using rule 17 (lexp)
+
+
+state 32
+
+   15 lexp: lexp . yAND lexp
+   16     | lexp . yOR lexp
+   18     | yOP lexp . yCP
+
+    yAND  shift, and go to state 34
+    yOR   shift, and go to state 35
+    yCP   shift, and go to state 54
+
+
+state 33
+
+    8 lexp: exp . yLESS exp
+    9     | exp . yGREAT exp
+   10     | exp . yLEQ exp
+   11     | exp . yGEQ exp
+   12     | exp . yNEQ exp
+   13     | exp . yEQUAL exp
+   14     | exp . error exp
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+   25    | yOP exp . yCP
+
+    error      shift, and go to state 36
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+    yLEQ       shift, and go to state 41
+    yGEQ       shift, and go to state 42
+    yNEQ       shift, and go to state 43
+    yEQUAL     shift, and go to state 44
+    yLESS      shift, and go to state 45
+    yGREAT     shift, and go to state 46
+    yCP        shift, and go to state 55
+
+
+state 34
+
+   15 lexp: lexp yAND . lexp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yNOT         shift, and go to state 17
+    yOP          shift, and go to state 18
+
+    lexp  go to state 56
+    exp   go to state 20
+    term  go to state 21
+
+
+state 35
+
+   16 lexp: lexp yOR . lexp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yNOT         shift, and go to state 17
+    yOP          shift, and go to state 18
+
+    lexp  go to state 57
+    exp   go to state 20
+    term  go to state 21
+
+
+state 36
+
+   14 lexp: exp error . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 58
+    term  go to state 21
+
+
+state 37
+
+   20 exp: exp yPLUS . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 59
+    term  go to state 21
+
+
+state 38
+
+   21 exp: exp yMINUS . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 60
+    term  go to state 21
+
+
+state 39
+
+   22 exp: exp yMULTIPLY . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 61
+    term  go to state 21
+
+
+state 40
+
+   23 exp: exp yDIVIDE . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 62
+    term  go to state 21
+
+
+state 41
+
+   10 lexp: exp yLEQ . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 63
+    term  go to state 21
+
+
+state 42
+
+   11 lexp: exp yGEQ . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 64
+    term  go to state 21
+
+
+state 43
+
+   12 lexp: exp yNEQ . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 65
+    term  go to state 21
+
+
+state 44
+
+   13 lexp: exp yEQUAL . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 66
+    term  go to state 21
+
+
+state 45
+
+    8 lexp: exp yLESS . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 67
+    term  go to state 21
+
+
+state 46
+
+    9 lexp: exp yGREAT . exp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yOP          shift, and go to state 27
+
+    exp   go to state 68
+    term  go to state 21
+
+
+state 47
+
+   31 scope: yNEXT error .
+
+    $default  reduce using rule 31 (scope)
+
+
+state 48
+
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+   30 scope: yNEXT exp .
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 30 (scope)
+
+
+state 49
+
+   33 scope: yRECORD error .
+
+    $default  reduce using rule 33 (scope)
+
+
+state 50
+
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+   32 scope: yRECORD exp .
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 32 (scope)
+
+
+state 51
+
+   36 while_exp: yWHILE . lexp
+
+    yMINUS       shift, and go to state 14
+    yIDENTIFIER  shift, and go to state 15
+    yNUMBER      shift, and go to state 16
+    yNOT         shift, and go to state 17
+    yOP          shift, and go to state 18
+
+    lexp  go to state 69
+    exp   go to state 20
+    term  go to state 21
+
+
+state 52
+
+    5 stat: yLOCATE for_exp scope while_exp . optimize_exp
+
+    yNOOPTIMIZE  shift, and go to state 70
+
+    $default  reduce using rule 37 (optimize_exp)
+
+    optimize_exp  go to state 71
+
+
+state 53
+
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+   25    | yOP exp . yCP
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+    yCP        shift, and go to state 55
+
+
+state 54
+
+   18 lexp: yOP lexp yCP .
+
+    $default  reduce using rule 18 (lexp)
+
+
+state 55
+
+   25 exp: yOP exp yCP .
+
+    $default  reduce using rule 25 (exp)
+
+
+state 56
+
+   15 lexp: lexp . yAND lexp
+   15     | lexp yAND lexp .
+   16     | lexp . yOR lexp
+
+    $default  reduce using rule 15 (lexp)
+
+
+state 57
+
+   15 lexp: lexp . yAND lexp
+   16     | lexp . yOR lexp
+   16     | lexp yOR lexp .
+
+    yAND  shift, and go to state 34
+
+    $default  reduce using rule 16 (lexp)
+
+
+state 58
+
+   14 lexp: exp error exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 14 (lexp)
+
+
+state 59
+
+   20 exp: exp . yPLUS exp
+   20    | exp yPLUS exp .
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 20 (exp)
+
+
+state 60
+
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   21    | exp yMINUS exp .
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 21 (exp)
+
+
+state 61
+
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   22    | exp yMULTIPLY exp .
+   23    | exp . yDIVIDE exp
+
+    $default  reduce using rule 22 (exp)
+
+
+state 62
+
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+   23    | exp yDIVIDE exp .
+
+    $default  reduce using rule 23 (exp)
+
+
+state 63
+
+   10 lexp: exp yLEQ exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 10 (lexp)
+
+
+state 64
+
+   11 lexp: exp yGEQ exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 11 (lexp)
+
+
+state 65
+
+   12 lexp: exp yNEQ exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 12 (lexp)
+
+
+state 66
+
+   13 lexp: exp yEQUAL exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 13 (lexp)
+
+
+state 67
+
+    8 lexp: exp yLESS exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 8 (lexp)
+
+
+state 68
+
+    9 lexp: exp yGREAT exp .
+   20 exp: exp . yPLUS exp
+   21    | exp . yMINUS exp
+   22    | exp . yMULTIPLY exp
+   23    | exp . yDIVIDE exp
+
+    yPLUS      shift, and go to state 37
+    yMINUS     shift, and go to state 38
+    yMULTIPLY  shift, and go to state 39
+    yDIVIDE    shift, and go to state 40
+
+    $default  reduce using rule 9 (lexp)
+
+
+state 69
+
+   15 lexp: lexp . yAND lexp
+   16     | lexp . yOR lexp
+   36 while_exp: yWHILE lexp .
+
+    yAND  shift, and go to state 34
+    yOR   shift, and go to state 35
+
+    $default  reduce using rule 36 (while_exp)
+
+
+state 70
+
+   38 optimize_exp: yNOOPTIMIZE .
+
+    $default  reduce using rule 38 (optimize_exp)
+
+
+state 71
+
+    5 stat: yLOCATE for_exp scope while_exp optimize_exp .
+
+    $default  reduce using rule 5 (stat)

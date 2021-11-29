@@ -1,0 +1,4 @@
+yacc -d calc.yacc
+lex lex
+gcc -ll variables.c y.tab.c lex.yy.c
+cat input.txt | ./a.out > result.txt

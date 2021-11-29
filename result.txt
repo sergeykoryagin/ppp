@@ -1,0 +1,269 @@
+LOCATE
+FOR
+NUMBER = 14
+LESS
+NUMBER = 18
+RECORD
+left expression value = 14
+right expression value = 18
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+expression value = 40
+NUMBER = 3
+GREAT
+NUMBER = 5
+NOOPTIMIZE
+left expression value = 3
+right expression value = 5
+SEMICOLON
+
+LOCATE
+IDENTIFIER
+NUMBER = 14
+LESS
+NUMBER = 18
+RECORD
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+NUMBER = 3
+GREAT
+NUMBER = 5
+NOOPTIMIZE
+SEMICOLON
+at line 2, position 56 : syntax error: wrong statement
+
+LOCATE
+FOR
+NUMBER = 14
+LESS
+NUMBER = 18
+RECORD
+left expression value = 14
+right expression value = 18
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+expression value = 40
+NUMBER = 3
+GREAT
+NUMBER = 5
+NOOPTIMIZE
+left expression value = 3
+right expression value = 5
+SEMICOLON
+
+LOCATE
+FOR
+NUMBER = 14
+LESS
+NUMBER = 18
+NEXT
+left expression value = 14
+right expression value = 18
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+NUMBER = 3
+NUMBER = 5
+NOOPTIMIZE
+SEMICOLON
+at line 4, position 53 : syntax error: wrong statement
+
+LOCATE
+FOR
+NUMBER = 14
+LESS
+NUMBER = 18
+RECORD
+left expression value = 14
+right expression value = 18
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+expression value = 40
+NUMBER = 3
+GREAT
+NUMBER = 5
+NOOPTIMIZE
+left expression value = 3
+right expression value = 5
+SEMICOLON
+
+LOCATE
+FOR
+NUMBER = 14
+LESS
+NUMBER = 18
+NEXT
+left expression value = 14
+right expression value = 18
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+expression value = 40
+NUMBER = 3
+GREAT
+NUMBER = 5
+NOOPTIMIZE
+left expression value = 3
+right expression value = 5
+SEMICOLON
+
+LOCATE
+FOR
+NUMBER = 14
+LESS
+NUMBER = 18
+NEXT
+left expression value = 14
+right expression value = 18
+NUMBER = 17
+PLUS
+WHILE
+at line 7, position 34 : syntax error: expected an expression after NEXT
+NUMBER = 3
+GREAT
+NUMBER = 5
+NOOPTIMIZE
+left expression value = 3
+right expression value = 5
+SEMICOLON
+
+IDENTIFIER
+ASSIGN
+NUMBER = 125
+SEMICOLON
+awda = 125;
+IDENTIFIER
+ASSIGN
+IDENTIFIER
+at line 9, position 8 : runtime error: unknown identifier awda
+PLUS
+NUMBER = 17
+SEMICOLON
+b = awda + 17;
+LOCATE
+FOR
+NUMBER = 14
+LESS
+NUMBER = 18
+RECORD
+left expression value = 14
+right expression value = 18
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+expression value = 40
+NUMBER = 3
+GREAT
+NUMBER = 5
+IDENTIFIER
+left expression value = 3
+right expression value = 5
+at line 10, position 55 : syntax error: semicolon is missing
+SEMICOLON
+
+IDENTIFIER
+at line 11, position 4 : runtime error: unknown identifier awda
+ASSIGN
+at line 11, position 6 : syntax error: assignment expected
+at line 11, position 6 : syntax error: semicolon is missing
+NUMBER = 13
+SEMICOLON
+at line 11, position 10 : syntax error: wrong statement
+
+IDENTIFIER
+ASSIGN
+IDENTIFIER
+at line 12, position 8 : runtime error: unknown identifier awda
+PLUS
+IDENTIFIER
+at line 12, position 15 : runtime error: unknown identifier awda
+SEMICOLON
+b = awda + awda;
+IDENTIFIER
+ASSIGN
+SEMICOLON
+
+IDENTIFIER
+at line 14, position 2 : runtime error: unknown identifier ya
+IDENTIFIER
+at line 14, position 5 : syntax error: assignment expected
+at line 14, position 5 : syntax error: semicolon is missing
+SEMICOLON
+
+IDENTIFIER
+at line 15, position 2 : runtime error: unknown identifier ya
+ASSIGN
+at line 15, position 4 : syntax error: assignment expected
+at line 15, position 4 : syntax error: semicolon is missing
+ASSIGN
+ASSIGN
+SEMICOLON
+at line 15, position 10 : syntax error: wrong statement
+
+SEMICOLON
+at line 16, position 1 : syntax error: wrong statement
+
+LOCATE
+FOR
+NUMBER = 14
+NUMBER = 18
+RECORD
+at line 17, position 23 : syntax error: comparison sign is missing
+NUMBER = 17
+PLUS
+NUMBER = 23
+WHILE
+expression value = 40
+NUMBER = 3
+GREAT
+NUMBER = 5
+NOOPTIMIZE
+left expression value = 3
+right expression value = 5
+SEMICOLON
+
+NUMBER = 500
+ASSIGN
+NUMBER = 500
+SEMICOLON
+at line 18, position 10 : syntax error: wrong statement
+
+IDENTIFIER
+ASSIGN
+OP
+IDENTIFIER
+at line 19, position 6 : runtime error: unknown identifier b
+PLUS
+IDENTIFIER
+at line 19, position 10 : runtime error: unknown identifier b
+CP
+DIVIDE
+NUMBER = 3
+SEMICOLON
+p = (b + b) / 3;
+IDENTIFIER
+ASSIGN
+IDENTIFIER
+at line 20, position 5 : runtime error: unknown identifier p
+MULTIPLY
+NUMBER = 10
+SEMICOLON
+p = p * 10;
+IDENTIFIER
+ASSIGN
+NUMBER = 123
+
+p = 123
+at line 22, position 0 : syntax error: semicolon is missing
+Parsed with 25 errors.

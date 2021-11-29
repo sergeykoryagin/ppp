@@ -1,0 +1,21 @@
+locate for 14 < 18 RECORD 17 + 23 WHILE 3 > 5 NOOPTIMIZE;
+locate fo 14 < 18 RECORD 17 + 23 WHILE 3 > 5 NOOPTIMIZE;
+locate for 14 < 18 RECORD 17 + 23 WHILE 3 > 5 NOOPTIMIZE;
+locate for 14 < 18 REST 17 + 23 WHILE 3 5 NOOPTIMIZE;
+locate for 14 < 18 RECORD 17 + 23 WHILE 3 > 5 NOOPTIMIZE;
+locate for 14 < 18 NEXT 17 + 23 WHILE 3 > 5 NOOPTIMIZE;
+locate for 14 < 18 NEXT 17 +  WHILE 3 > 5 NOOPTIMIZE;
+awda = 125;
+b = awda + 17;
+locate for 14 < 18 RECORD 17 + 23 WHILE 3 > 5 NOOPTMIZE;
+awda = 13;
+b = awda + awda;
+ya = ;
+ya ya;
+ya = = = ;
+;
+locate for 14 18 RECORD 17 + 23 WHILE 3 > 5 NOOPTIMIZE;
+500 = 500;
+p = (b + b) / 3;
+p = p * 10;
+p = 123
